@@ -54,7 +54,8 @@ Below is the full command sequence from cloning the repo to opening a Pull Reque
 ### 1. Clone the repository
 
 ```bash
-gh repo clone JumpCo-JumpStart-Internship/NetworkChangeSet
+gh repo clone JumpCo-JumpStart-Internship/NetworkChangeSet # if you have github cli
+clone JumpCo-JumpStart-Internship/NetworkChangeSet # if you do not have github cli
 cd NetworkChangeSet
 ```
 

@@ -19,6 +19,8 @@ This repository contains the IBM App Connect Enterprise (ACE) integration projec
 
 **No one pushes directly to `main`.** This includes small fixes, "quick" changes, or config tweaks. `main` is protected and reflects the current stable state of the integration — it must only be updated through a **reviewed Pull Request (PR)**.
 
+**Always sync before you push.** Before pushing any changes, make sure your local branch is up to date with the remote (`git pull`) so you catch conflicts early and never overwrite a teammate's work. Pushing without syncing first is one of the most common causes of lost work and messy merge conflicts.
+
 Workflow for everyone on the team:
 
 1. Create your own branch off `main`.
@@ -52,8 +54,8 @@ Below is the full command sequence from cloning the repo to opening a Pull Reque
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-org>/<your-repo>.git
-cd <your-repo>
+gh repo clone JumpCo-JumpStart-Internship/NetworkChangeSet
+cd NetworkChangeSet
 ```
 
 ### 2. Make sure you're up to date with main
@@ -80,13 +82,23 @@ git add .
 git commit -m "Add retry logic to SFTP policy for failed connections"
 ```
 
-### 6. Push your branch to the remote
+### 6. Sync with remote before pushing
+
+Before pushing, always pull down the latest changes to catch any conflicts early — especially if others are working on the same branch or your work has been open a while:
+
+```bash
+git pull origin john/sftp-retry-logic --rebase
+```
+
+> If this is the first push for this branch, there's nothing to pull yet — that's fine, move on to the next step.
+
+### 7. Push your branch to the remote
 
 ```bash
 git push -u origin john/sftp-retry-logic
 ```
 
-### 7. Open a Pull Request
+### 8. Open a Pull Request
 
 - Go to the repository on GitHub (or your Git provider).
 - You'll see a prompt to open a PR for the branch you just pushed — click it, or go to **Pull Requests → New Pull Request**.
@@ -94,14 +106,14 @@ git push -u origin john/sftp-retry-logic
 - Add a clear title and description of your change.
 - Request a review from at least one teammate.
 
-### 8. After approval — merge
+### 9. After approval — merge
 
 Merging is done through the PR interface (not locally pushed to `main`). Once approved:
 
 - Use **Squash and merge** (or your team's preferred merge strategy) on the PR page.
 - Delete the feature branch after merging to keep things tidy.
 
-### 9. Sync your local main after merge
+### 10. Sync your local main after merge
 
 ```bash
 git switch main
@@ -110,4 +122,4 @@ git pull origin main
 
 ---
 
-**Summary rule of thumb:** if you're about to run `git push origin main`, stop — you're on the wrong branch. Branch, push, PR, review, merge.
+**Summary rule of thumb:** if you're about to run `git push origin main`, stop — you're on the wrong branch. And before every push, always `git pull` first to stay in sync. Branch, sync, push, PR, review, merge.
